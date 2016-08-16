@@ -1,6 +1,6 @@
 import {Component, default as React} from 'react'
 import ReactDOM from 'react-dom'
-import Preview from './previewView.js'
+import PreviewView from './previewView/index.js'
 
 var testMedia = {
 	pdf: "http://infolab.stanford.edu/pub/papers/google.pdf",
@@ -47,21 +47,22 @@ class App extends Component {
 	}
 
 	render() {
-		var updateButtonClass = 'btn btn-primary disabled'
+		const updateButtonClass = 'btn btn-primary disabled'
+		const buttonProps = {className: 'btn btn-default', style: {marginRight: 10}}
 
 		return <div style={{width: '600px', marginLeft: 10, marginTop: 10}}>
-			<Preview background='white' width='600px' height='330px' src={ this.state.src } />
+			<PreviewView background='white' width='600px' height='330px' src={ this.state.src } />
 			<div className="form-group form-inline" style={{marginTop: 10}}>
 				<input ref='sourceInput' className='form-control' type='text' value={ this.state.srcText } style={{width:'80%'}} onChange={ this.onChange.bind(this) } />
 				<button className='btn btn-primary' onClick={ this.updateSource.bind(this) } style={{marginLeft: 10}}>Update</button>
 			</div>
 			<div className="form-group">
-				<button className="btn btn-default" style={{marginRight: 10}} onClick={ this.test('image') }>Image</button>
-				<button className="btn btn-default" style={{marginRight: 10}} onClick={ this.test('video') }>Video</button>
-				<button className="btn btn-default" style={{marginRight: 10}} onClick={ this.test('pdf') }>PDF</button>
-				<button className="btn btn-default" style={{marginRight: 10}} onClick={ this.test('youtube') }>YouTube</button>
-				<button className="btn btn-default" style={{marginRight: 10}} onClick={ this.test('youtube-short') }>YouTube Short</button>
-				<button className="btn btn-default" style={{marginRight: 10}} onClick={ this.test('vimeo') }>Vimeo</button>
+				<button { ...buttonProps } onClick={ this.test('image') }>Image</button>
+				<button { ...buttonProps } onClick={ this.test('video') }>Video</button>
+				<button { ...buttonProps } onClick={ this.test('pdf') }>PDF</button>
+				<button { ...buttonProps } onClick={ this.test('youtube') }>YouTube</button>
+				<button { ...buttonProps } onClick={ this.test('youtube-short') }>YouTube Short</button>
+				<button { ...buttonProps } onClick={ this.test('vimeo') }>Vimeo</button>
 			</div>
 		</div>
 	}
